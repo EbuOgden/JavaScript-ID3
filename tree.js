@@ -165,7 +165,7 @@ function fileSelected(event) {
                     result.push(obj);
                 }
 
-                for (var key in result[0]) { // We are checking not number attributes for empathy
+                for (var key in result[0]) { // We are checking not number attributes for entropy
                     if (isNaN(result[0][key])) {
                         nonNumberAttributes.push(key);
                     }
