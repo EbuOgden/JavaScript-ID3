@@ -25,6 +25,8 @@ function fileSelected(event) {
 
                 var headers = splittedArray[0].split(";"); // Attributes
 
+                var count = 0;
+
                 var jobCount = {
                         "admin": 0,
                         "blue_collar": 0,
@@ -107,7 +109,16 @@ function fileSelected(event) {
                         "no": 0
                     };
 
-                // Frequency Arrays Have Will Using in Future for to Calculate Lead One. We Will Store Headers Frequencies as an Object.
+                // Frequency Arrays Have Will Using for to Calculate Lead One. We Will Store Headers Frequencies as an Object.
+                /*
+                  Example Data :
+                  {
+                    admin : 12.234234,
+                    blue-collar : 32.1231,
+                    entrepreneur : 12.1231
+                  }
+
+                */
                 var jobsFrequency = [],
                     maritalFrequency = [],
                     educationFrequency = [],
@@ -120,7 +131,22 @@ function fileSelected(event) {
                     poutFrequency = [],
                     yFrequency = [];
 
-                var root;
+                // Rate Arrays Have Will Using for Storing Every Header's Rates and Will Sorting to Find Lead Rate!
+                var jobRateArray = [],
+                    maritalRateArray = [],
+                    educationRateArray = [],
+                    defaultRateArray = [],
+                    housingRateArray = [],
+                    loanRateArray = [],
+                    contactRateArray = [],
+                    monthRateArray = [],
+                    dayOfWeekRateArray = [],
+                    poutComeRateArray = [],
+                    yRateArray = [];
+
+                var totalRateArray = []; // Every Header's Leader's Array
+
+
 
                 for (var i = headers.length; i--;) {
                     headers[i] = headers[i].replace(/\"/g, ""); // Delete Quotation Mark from Header
@@ -223,21 +249,6 @@ function fileSelected(event) {
 
                 // result.length is our line number so we will use this number for calculating frequency
 
-                // Rate Arrays Have Will Using in Future for ID3 Tree!
-                var jobRootRateArray = [],
-                    maritalRateArray = [],
-                    educationRateArray = [],
-                    defaultRateArray = [],
-                    housingRateArray = [],
-                    loanRateArray = [],
-                    contactRateArray = [],
-                    monthRateArray = [],
-                    dayOfWeekRateArray = [],
-                    poutComeRateArray = [],
-                    yRateArray = [];
-
-                var count = 0;
-
                 /*************/
                 // Job Frequency Calculation START !
 
@@ -246,6 +257,7 @@ function fileSelected(event) {
                     obj[key] = (jobCount[key] / result.length) * 100
                     jobsFrequency.push(obj);
                 }
+
                 // Job Frequency Calculation FINISH !
 
                 /*          */
@@ -254,15 +266,15 @@ function fileSelected(event) {
                 for (var i = 0; i < Object.keys(jobCount).length; i++) { // jobCount Object Length
 
                     var a = (jobCount[Object.keys(jobCount)[i]] / result.length) * 100;
-                    jobRootRateArray.push(a);
+                    jobRateArray.push(a);
                 }
 
-                jobRootRateArray.sort(descendingOrder);
+                jobRateArray.sort(descendingOrder);
 
 
                 for (var key in jobCount) { // Define Lead One in Jobs
-                    if(jobRootRateArray[0] == jobsFrequency[count][key] && jobRootRateArray[0] === jobsFrequency[count][key]){ // Find Lead One In Jobs
-                      console.log(key);
+                    if (jobRateArray[0] == jobsFrequency[count][key] && jobRateArray[0] === jobsFrequency[count][key]) { // Find Lead One In Jobs
+                        console.log("Jobs : " + key + " : " + jobRateArray[0]);
                     }
                     count++;
                 }
@@ -295,8 +307,8 @@ function fileSelected(event) {
 
 
                 for (var key in maritalCount) { // Define Lead One in Marital
-                    if(maritalRateArray[0] == maritalFrequency[count][key] && maritalRateArray[0] === maritalFrequency[count][key]){ // Find Lead One In Marital
-                      console.log(key);
+                    if (maritalRateArray[0] == maritalFrequency[count][key] && maritalRateArray[0] === maritalFrequency[count][key]) { // Find Lead One In Marital
+                        console.log("Marital : " + key + " : " + maritalRateArray[0]);
                     }
                     count++;
                 }
@@ -328,8 +340,8 @@ function fileSelected(event) {
                 educationRateArray.sort(descendingOrder);
 
                 for (var key in educationCount) { // Define Lead One in Education
-                    if(educationRateArray[0] == educationFrequency[count][key] && educationRateArray[0] === educationFrequency[count][key]){  // Find Lead One In Education
-                      console.log(key);
+                    if (educationRateArray[0] == educationFrequency[count][key] && educationRateArray[0] === educationFrequency[count][key]) { // Find Lead One In Education
+                        console.log("Education : " + key + " : " + educationRateArray[0]);
                     }
                     count++;
                 }
@@ -359,8 +371,8 @@ function fileSelected(event) {
                 defaultRateArray.sort(descendingOrder);
 
                 for (var key in defaultCount) { // Define Lead One in Default
-                    if(defaultRateArray[0] == defaultFrequency[count][key] && defaultRateArray[0] === defaultFrequency[count][key]){  // Find Lead One In Default
-                      console.log(key);
+                    if (defaultRateArray[0] == defaultFrequency[count][key] && defaultRateArray[0] === defaultFrequency[count][key]) { // Find Lead One In Default
+                        console.log("Default : " + key + " : " + defaultRateArray[0]);
                     }
                     count++;
                 }
@@ -390,8 +402,8 @@ function fileSelected(event) {
                 housingRateArray.sort(descendingOrder);
 
                 for (var key in housingCount) { // Define Lead One in Housing
-                    if(housingRateArray[0] == housingFrequency[count][key] && housingRateArray[0] === housingFrequency[count][key]){  // Find Lead One In Housing
-                      console.log(key);
+                    if (housingRateArray[0] == housingFrequency[count][key] && housingRateArray[0] === housingFrequency[count][key]) { // Find Lead One In Housing
+                        console.log("Housing : " + key + " : " + housingRateArray[0]);
                     }
                     count++;
                 }
@@ -421,8 +433,8 @@ function fileSelected(event) {
                 loanRateArray.sort(descendingOrder);
 
                 for (var key in loanCount) { // Define Lead One in Loan
-                    if(loanRateArray[0] == loanFrequency[count][key] && loanRateArray[0] === loanFrequency[count][key]){  // Find Lead One In Loan
-                      console.log(key);
+                    if (loanRateArray[0] == loanFrequency[count][key] && loanRateArray[0] === loanFrequency[count][key]) { // Find Lead One In Loan
+                        console.log("Loan : " + key + " : " + loanRateArray[0]);
                     }
                     count++;
                 }
@@ -453,8 +465,8 @@ function fileSelected(event) {
                 contactRateArray.sort(descendingOrder);
 
                 for (var key in contactCount) { // Define Lead One in Contact
-                    if(contactRateArray[0] == contactFrequency[count][key] && contactRateArray[0] === contactFrequency[count][key]){  // Find Lead One In Contact
-                      console.log(key);
+                    if (contactRateArray[0] == contactFrequency[count][key] && contactRateArray[0] === contactFrequency[count][key]) { // Find Lead One In Contact
+                        console.log("Contact : " + key + " : " + contactRateArray[0]);
                     }
                     count++;
                 }
@@ -485,8 +497,8 @@ function fileSelected(event) {
                 monthRateArray.sort(descendingOrder);
 
                 for (var key in monthCount) { // Define Lead One in Month
-                    if(monthRateArray[0] == monthFrequency[count][key] && monthRateArray[0] === monthFrequency[count][key]){  // Find Lead One In Month
-                      console.log(key);
+                    if (monthRateArray[0] == monthFrequency[count][key] && monthRateArray[0] === monthFrequency[count][key]) { // Find Lead One In Month
+                        console.log("Month : " + key + " : " + monthRateArray[0]);
                     }
                     count++;
                 }
@@ -517,8 +529,8 @@ function fileSelected(event) {
                 dayOfWeekRateArray.sort(descendingOrder);
 
                 for (var key in dayOfWeekCount) { // Define Lead One in Day Of Week
-                    if(dayOfWeekRateArray[0] == dayOfWeekFrequency[count][key] && dayOfWeekRateArray[0] === dayOfWeekFrequency[count][key]){  // Find Lead One In Day Of Week
-                      console.log(key);
+                    if (dayOfWeekRateArray[0] == dayOfWeekFrequency[count][key] && dayOfWeekRateArray[0] === dayOfWeekFrequency[count][key]) { // Find Lead One In Day Of Week
+                        console.log("Day Of Week : " + key + " : " + dayOfWeekRateArray[0]);
                     }
                     count++;
                 }
@@ -548,8 +560,8 @@ function fileSelected(event) {
                 poutComeRateArray.sort(descendingOrder);
 
                 for (var key in poutcomeCount) { // Define Lead One in PoutCome
-                    if(poutComeRateArray[0] == poutFrequency[count][key] && poutComeRateArray[0] === poutFrequency[count][key]){  // Find Lead One In PoutCome
-                      console.log(key);
+                    if (poutComeRateArray[0] == poutFrequency[count][key] && poutComeRateArray[0] === poutFrequency[count][key]) { // Find Lead One In PoutCome
+                        console.log("PoutCome : " + key + " : " + poutComeRateArray[0]);
                     }
                     count++;
                 }
@@ -558,6 +570,10 @@ function fileSelected(event) {
 
                 /*************/
                 // Y Frequency Calculation START!
+
+                /*
+                  Y HEADER IS DESIRED TARGET, HAVE WILL USING FOR DESIRE
+                */
                 for (var key in yCount) {
                     var obj = {}
                     obj[key] = (yCount[key] / result.length) * 100
@@ -579,14 +595,19 @@ function fileSelected(event) {
                 yRateArray.sort(descendingOrder);
 
                 for (var key in yCount) { // Define Lead One in Y
-                    if(yRateArray[0] == yFrequency[count][key] && yRateArray[0] === yFrequency[count][key]){  // Find Lead One In Y
-                      console.log(key);
+                    if (yRateArray[0] == yFrequency[count][key] && yRateArray[0] === yFrequency[count][key]) { // Find Lead One In Y
+                        console.log("Y: " + key + " : " + yRateArray[0]);
                     }
                     count++;
                 }
                 // Define Lead One in Y FINISH!
                 /*          */
 
+                /*  Every Rate Array is Descend Ordered, 0 Index is Lead One for Each Header */
+                totalRateArray = [jobRateArray[0], maritalRateArray[0], educationRateArray[0], defaultRateArray[0], housingRateArray[0], loanRateArray[0], contactRateArray[0], monthRateArray[0], dayOfWeekRateArray[0], poutComeRateArray[0]];
+                totalRateArray.sort(descendingOrder);
+
+                console.log(totalRateArray);
             }
 
             reader.readAsText(file);
