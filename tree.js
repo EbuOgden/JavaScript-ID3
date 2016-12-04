@@ -1,3 +1,8 @@
+//
+//  Created by Ebubekir Ogden on 12/03/16.
+//  Copyright © 2016 Ebubekir Ogden. All rights reserved.
+//
+
 document.getElementById('fileSelect').addEventListener('change', fileSelected, false);
 
 function fileSelected(event) {
@@ -102,6 +107,18 @@ function fileSelected(event) {
                         "no": 0
                     };
 
+                var jobsFrequency = [],
+                maritalFrequency = [],
+                educationFrequency = [],
+                defaultFrequency = [],
+                housingFrequency = [],
+                loanFrequency = [],
+                contactFrequency = [],
+                mounthFrequency = [],
+                dayOfWeekFrequency = [],
+                poutFrequency = [],
+                yFrequency = [];
+
                 for (var i = headers.length; i--;) {
                     headers[i] = headers[i].replace(/\"/g, ""); // Delete Quotation Mark from Header
                 }
@@ -127,86 +144,166 @@ function fileSelected(event) {
 
                 for (var i = 0; i < result.length; i++) {
                     for (var j = 0; j < nonNumberAttributes.length; j++) {
-                        if(nonNumberAttributes[j] == "job" && nonNumberAttributes[j] === "job"){
-                          jobCount.admin += (result[i][nonNumberAttributes[j]] == "admin." && result[i][nonNumberAttributes[j]] === "admin.") ? 1 : 0;
-                          jobCount.blue_collar += (result[i][nonNumberAttributes[j]] == "blue-collar" && result[i][nonNumberAttributes[j]] === "blue-collar") ? 1 : 0;
-                          jobCount.entrepreneur += (result[i][nonNumberAttributes[j]] == "entrepreneur" && result[i][nonNumberAttributes[j]] === "entrepreneur") ? 1 : 0;
-                          jobCount.housemaid += (result[i][nonNumberAttributes[j]] == "housemaid" && result[i][nonNumberAttributes[j]] === "housemaid") ? 1 : 0;
-                          jobCount.management += (result[i][nonNumberAttributes[j]] == "management" && result[i][nonNumberAttributes[j]] === "management") ? 1 : 0;
-                          jobCount.retired += (result[i][nonNumberAttributes[j]] == "retired" && result[i][nonNumberAttributes[j]] === "retired") ? 1 : 0;
-                          jobCount.self_employed += (result[i][nonNumberAttributes[j]] == "self-employed" && result[i][nonNumberAttributes[j]] === "self-employed") ? 1 : 0;
-                          jobCount.services += (result[i][nonNumberAttributes[j]] == "services" && result[i][nonNumberAttributes[j]] === "services") ? 1 : 0;
-                          jobCount.student += (result[i][nonNumberAttributes[j]] == "student" && result[i][nonNumberAttributes[j]] === "student") ? 1 : 0;
-                          jobCount.technician += (result[i][nonNumberAttributes[j]] == "technician" && result[i][nonNumberAttributes[j]] === "technician") ? 1 : 0;
-                          jobCount.unemployed += (result[i][nonNumberAttributes[j]] == "unemployed" && result[i][nonNumberAttributes[j]] === "unemployed") ? 1 : 0;
-                          jobCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0
-                        }else if(nonNumberAttributes[j] == "marital" && nonNumberAttributes[j] === "marital"){
-                          maritalCount.divorced += (result[i][nonNumberAttributes[j]] == "divorced" && result[i][nonNumberAttributes[j]] === "divorced") ? 1 : 0;
-                          maritalCount.married += (result[i][nonNumberAttributes[j]] == "married" && result[i][nonNumberAttributes[j]] === "married") ? 1 : 0;
-                          maritalCount.single += (result[i][nonNumberAttributes[j]] == "single" && result[i][nonNumberAttributes[j]] === "single") ? 1 : 0;
-                          maritalCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0;
-                        }else if(nonNumberAttributes[j] == "education" && nonNumberAttributes[j] === "education"){
-                          educationCount.basic_4y += (result[i][nonNumberAttributes[j]] == "basic.4y" && result[i][nonNumberAttributes[j]] === "basic.4y") ? 1 : 0;
-                          educationCount.basic_6y += (result[i][nonNumberAttributes[j]] == "basic.6y" && result[i][nonNumberAttributes[j]] === "basic.6y") ? 1 : 0;
-                          educationCount.basic_9y += (result[i][nonNumberAttributes[j]] == "basic.9y" && result[i][nonNumberAttributes[j]] === "basic.9y") ? 1 : 0;
-                          educationCount.high_school += (result[i][nonNumberAttributes[j]] == "high.school" && result[i][nonNumberAttributes[j]] === "high.school") ? 1 : 0;
-                          educationCount.illiterate += (result[i][nonNumberAttributes[j]] == "illiterate" && result[i][nonNumberAttributes[j]] === "illiterate") ? 1 : 0;
-                          educationCount.professional_course += (result[i][nonNumberAttributes[j]] == "professional.course" && result[i][nonNumberAttributes[j]] === "professional.course") ? 1 : 0;
-                          educationCount.university_degree += (result[i][nonNumberAttributes[j]] == "university.degree" && result[i][nonNumberAttributes[j]] === "university.degree") ? 1 : 0;
-                          educationCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0;
-                        }else if(nonNumberAttributes[j] == "default" && nonNumberAttributes[j] === "default"){
-                          defaultCount.no += (result[i][nonNumberAttributes[j]] == "no" && result[i][nonNumberAttributes[j]] === "no") ? 1 : 0;
-                          defaultCount.yes += (result[i][nonNumberAttributes[j]] == "yes" && result[i][nonNumberAttributes[j]] === "yes") ? 1 : 0;
-                          defaultCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0;
-                        }else if(nonNumberAttributes[j] == "housing" && nonNumberAttributes[j] === "housing"){
-                          housingCount.no += (result[i][nonNumberAttributes[j]] == "no" && result[i][nonNumberAttributes[j]] === "no") ? 1 : 0;
-                          housingCount.yes += (result[i][nonNumberAttributes[j]] == "yes" && result[i][nonNumberAttributes[j]] === "yes") ? 1 : 0;
-                          housingCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0;
-                        }else if(nonNumberAttributes[j] == "loan" && nonNumberAttributes[j] === "loan"){
-                          loanCount.no += (result[i][nonNumberAttributes[j]] == "no" && result[i][nonNumberAttributes[j]] === "no") ? 1 : 0;
-                          loanCount.yes += (result[i][nonNumberAttributes[j]] == "yes" && result[i][nonNumberAttributes[j]] === "yes") ? 1 : 0;
-                          loanCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0;
-                        }else if(nonNumberAttributes[j] == "contact" && nonNumberAttributes[j] === "contact"){
-                          contactCount.cellular += (result[i][nonNumberAttributes[j]] == "cellular" && result[i][nonNumberAttributes[j]] === "cellular") ? 1 : 0;
-                          contactCount.telephone += (result[i][nonNumberAttributes[j]] == "telephone" && result[i][nonNumberAttributes[j]] === "telephone") ? 1 : 0;
-                        }else if(nonNumberAttributes[j] == "month" && nonNumberAttributes[j] === "month"){
-                          mounthCount.jan += (result[i][nonNumberAttributes[j]] == "jan" && result[i][nonNumberAttributes[j]] === "jan") ? 1 : 0;
-                          mounthCount.feb += (result[i][nonNumberAttributes[j]] == "feb" && result[i][nonNumberAttributes[j]] === "feb") ? 1 : 0;
-                          mounthCount.mar += (result[i][nonNumberAttributes[j]] == "mar" && result[i][nonNumberAttributes[j]] === "mar") ? 1 : 0;
-                          mounthCount.apr += (result[i][nonNumberAttributes[j]] == "apr" && result[i][nonNumberAttributes[j]] === "apr") ? 1 : 0;
-                          mounthCount.may += (result[i][nonNumberAttributes[j]] == "may" && result[i][nonNumberAttributes[j]] === "may") ? 1 : 0;
-                          mounthCount.jun += (result[i][nonNumberAttributes[j]] == "jun" && result[i][nonNumberAttributes[j]] === "jun") ? 1 : 0;
-                          mounthCount.jul += (result[i][nonNumberAttributes[j]] == "jul" && result[i][nonNumberAttributes[j]] === "jul") ? 1 : 0;
-                          mounthCount.aug += (result[i][nonNumberAttributes[j]] == "aug" && result[i][nonNumberAttributes[j]] === "aug") ? 1 : 0;
-                          mounthCount.sep += (result[i][nonNumberAttributes[j]] == "sep" && result[i][nonNumberAttributes[j]] === "sep") ? 1 : 0;
-                          mounthCount.oct += (result[i][nonNumberAttributes[j]] == "oct" && result[i][nonNumberAttributes[j]] === "oct") ? 1 : 0;
-                          mounthCount.nov += (result[i][nonNumberAttributes[j]] == "nov" && result[i][nonNumberAttributes[j]] === "nov") ? 1 : 0;
-                          mounthCount.dec += (result[i][nonNumberAttributes[j]] == "dec" && result[i][nonNumberAttributes[j]] === "dec") ? 1 : 0;
-                        }else if(nonNumberAttributes[j] == "day_of_week" && nonNumberAttributes[j] === "day_of_week"){
-                          dayOfWeekCount.mon += (result[i][nonNumberAttributes[j]] == "mon" && result[i][nonNumberAttributes[j]] === "mon") ? 1 : 0;
-                          dayOfWeekCount.tue += (result[i][nonNumberAttributes[j]] == "tue" && result[i][nonNumberAttributes[j]] === "tue") ? 1 : 0;
-                          dayOfWeekCount.wed += (result[i][nonNumberAttributes[j]] == "wed" && result[i][nonNumberAttributes[j]] === "wed") ? 1 : 0;
-                          dayOfWeekCount.thu += (result[i][nonNumberAttributes[j]] == "thu" && result[i][nonNumberAttributes[j]] === "thu") ? 1 : 0;
-                          dayOfWeekCount.fri += (result[i][nonNumberAttributes[j]] == "fri" && result[i][nonNumberAttributes[j]] === "fri") ? 1 : 0;
-                          dayOfWeekCount.sat += (result[i][nonNumberAttributes[j]] == "sat" && result[i][nonNumberAttributes[j]] === "sat") ? 1 : 0;
-                          dayOfWeekCount.sun += (result[i][nonNumberAttributes[j]] == "sun" && result[i][nonNumberAttributes[j]] === "sun") ? 1 : 0;
-                        }else if(nonNumberAttributes[j] == "poutcome" && nonNumberAttributes[j] === "poutcome"){
-                          poutcomeCount.failure += (result[i][nonNumberAttributes[j]] == "failure" && result[i][nonNumberAttributes[j]] === "failure") ? 1 : 0;
-                          poutcomeCount.nonexistent += (result[i][nonNumberAttributes[j]] == "nonexistent" && result[i][nonNumberAttributes[j]] === "nonexistent") ? 1 : 0;
-                          poutcomeCount.success += (result[i][nonNumberAttributes[j]] == "success" && result[i][nonNumberAttributes[j]] === "success") ? 1 : 0;
-                        }else if(nonNumberAttributes[j].trim() == "y" && nonNumberAttributes[j].trim() === "y"){
-                          yCount.yes += (result[i][nonNumberAttributes[j]].trim() == "yes" && result[i][nonNumberAttributes[j]].trim() === "yes") ? 1 : 0;
-                          yCount.no += (result[i][nonNumberAttributes[j]].trim() == "no" && result[i][nonNumberAttributes[j]].trim() === "no") ? 1 : 0;
+                        if (nonNumberAttributes[j] == "job" && nonNumberAttributes[j] === "job") {
+                            jobCount.admin += (result[i][nonNumberAttributes[j]] == "admin." && result[i][nonNumberAttributes[j]] === "admin.") ? 1 : 0;
+                            jobCount.blue_collar += (result[i][nonNumberAttributes[j]] == "blue-collar" && result[i][nonNumberAttributes[j]] === "blue-collar") ? 1 : 0;
+                            jobCount.entrepreneur += (result[i][nonNumberAttributes[j]] == "entrepreneur" && result[i][nonNumberAttributes[j]] === "entrepreneur") ? 1 : 0;
+                            jobCount.housemaid += (result[i][nonNumberAttributes[j]] == "housemaid" && result[i][nonNumberAttributes[j]] === "housemaid") ? 1 : 0;
+                            jobCount.management += (result[i][nonNumberAttributes[j]] == "management" && result[i][nonNumberAttributes[j]] === "management") ? 1 : 0;
+                            jobCount.retired += (result[i][nonNumberAttributes[j]] == "retired" && result[i][nonNumberAttributes[j]] === "retired") ? 1 : 0;
+                            jobCount.self_employed += (result[i][nonNumberAttributes[j]] == "self-employed" && result[i][nonNumberAttributes[j]] === "self-employed") ? 1 : 0;
+                            jobCount.services += (result[i][nonNumberAttributes[j]] == "services" && result[i][nonNumberAttributes[j]] === "services") ? 1 : 0;
+                            jobCount.student += (result[i][nonNumberAttributes[j]] == "student" && result[i][nonNumberAttributes[j]] === "student") ? 1 : 0;
+                            jobCount.technician += (result[i][nonNumberAttributes[j]] == "technician" && result[i][nonNumberAttributes[j]] === "technician") ? 1 : 0;
+                            jobCount.unemployed += (result[i][nonNumberAttributes[j]] == "unemployed" && result[i][nonNumberAttributes[j]] === "unemployed") ? 1 : 0;
+                            jobCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0
+                        } else if (nonNumberAttributes[j] == "marital" && nonNumberAttributes[j] === "marital") {
+                            maritalCount.divorced += (result[i][nonNumberAttributes[j]] == "divorced" && result[i][nonNumberAttributes[j]] === "divorced") ? 1 : 0;
+                            maritalCount.married += (result[i][nonNumberAttributes[j]] == "married" && result[i][nonNumberAttributes[j]] === "married") ? 1 : 0;
+                            maritalCount.single += (result[i][nonNumberAttributes[j]] == "single" && result[i][nonNumberAttributes[j]] === "single") ? 1 : 0;
+                            maritalCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0;
+                        } else if (nonNumberAttributes[j] == "education" && nonNumberAttributes[j] === "education") {
+                            educationCount.basic_4y += (result[i][nonNumberAttributes[j]] == "basic.4y" && result[i][nonNumberAttributes[j]] === "basic.4y") ? 1 : 0;
+                            educationCount.basic_6y += (result[i][nonNumberAttributes[j]] == "basic.6y" && result[i][nonNumberAttributes[j]] === "basic.6y") ? 1 : 0;
+                            educationCount.basic_9y += (result[i][nonNumberAttributes[j]] == "basic.9y" && result[i][nonNumberAttributes[j]] === "basic.9y") ? 1 : 0;
+                            educationCount.high_school += (result[i][nonNumberAttributes[j]] == "high.school" && result[i][nonNumberAttributes[j]] === "high.school") ? 1 : 0;
+                            educationCount.illiterate += (result[i][nonNumberAttributes[j]] == "illiterate" && result[i][nonNumberAttributes[j]] === "illiterate") ? 1 : 0;
+                            educationCount.professional_course += (result[i][nonNumberAttributes[j]] == "professional.course" && result[i][nonNumberAttributes[j]] === "professional.course") ? 1 : 0;
+                            educationCount.university_degree += (result[i][nonNumberAttributes[j]] == "university.degree" && result[i][nonNumberAttributes[j]] === "university.degree") ? 1 : 0;
+                            educationCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0;
+                        } else if (nonNumberAttributes[j] == "default" && nonNumberAttributes[j] === "default") {
+                            defaultCount.no += (result[i][nonNumberAttributes[j]] == "no" && result[i][nonNumberAttributes[j]] === "no") ? 1 : 0;
+                            defaultCount.yes += (result[i][nonNumberAttributes[j]] == "yes" && result[i][nonNumberAttributes[j]] === "yes") ? 1 : 0;
+                            defaultCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0;
+                        } else if (nonNumberAttributes[j] == "housing" && nonNumberAttributes[j] === "housing") {
+                            housingCount.no += (result[i][nonNumberAttributes[j]] == "no" && result[i][nonNumberAttributes[j]] === "no") ? 1 : 0;
+                            housingCount.yes += (result[i][nonNumberAttributes[j]] == "yes" && result[i][nonNumberAttributes[j]] === "yes") ? 1 : 0;
+                            housingCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0;
+                        } else if (nonNumberAttributes[j] == "loan" && nonNumberAttributes[j] === "loan") {
+                            loanCount.no += (result[i][nonNumberAttributes[j]] == "no" && result[i][nonNumberAttributes[j]] === "no") ? 1 : 0;
+                            loanCount.yes += (result[i][nonNumberAttributes[j]] == "yes" && result[i][nonNumberAttributes[j]] === "yes") ? 1 : 0;
+                            loanCount.unknown += (result[i][nonNumberAttributes[j]] == "unknown" && result[i][nonNumberAttributes[j]] === "unknown") ? 1 : 0;
+                        } else if (nonNumberAttributes[j] == "contact" && nonNumberAttributes[j] === "contact") {
+                            contactCount.cellular += (result[i][nonNumberAttributes[j]] == "cellular" && result[i][nonNumberAttributes[j]] === "cellular") ? 1 : 0;
+                            contactCount.telephone += (result[i][nonNumberAttributes[j]] == "telephone" && result[i][nonNumberAttributes[j]] === "telephone") ? 1 : 0;
+                        } else if (nonNumberAttributes[j] == "month" && nonNumberAttributes[j] === "month") {
+                            mounthCount.jan += (result[i][nonNumberAttributes[j]] == "jan" && result[i][nonNumberAttributes[j]] === "jan") ? 1 : 0;
+                            mounthCount.feb += (result[i][nonNumberAttributes[j]] == "feb" && result[i][nonNumberAttributes[j]] === "feb") ? 1 : 0;
+                            mounthCount.mar += (result[i][nonNumberAttributes[j]] == "mar" && result[i][nonNumberAttributes[j]] === "mar") ? 1 : 0;
+                            mounthCount.apr += (result[i][nonNumberAttributes[j]] == "apr" && result[i][nonNumberAttributes[j]] === "apr") ? 1 : 0;
+                            mounthCount.may += (result[i][nonNumberAttributes[j]] == "may" && result[i][nonNumberAttributes[j]] === "may") ? 1 : 0;
+                            mounthCount.jun += (result[i][nonNumberAttributes[j]] == "jun" && result[i][nonNumberAttributes[j]] === "jun") ? 1 : 0;
+                            mounthCount.jul += (result[i][nonNumberAttributes[j]] == "jul" && result[i][nonNumberAttributes[j]] === "jul") ? 1 : 0;
+                            mounthCount.aug += (result[i][nonNumberAttributes[j]] == "aug" && result[i][nonNumberAttributes[j]] === "aug") ? 1 : 0;
+                            mounthCount.sep += (result[i][nonNumberAttributes[j]] == "sep" && result[i][nonNumberAttributes[j]] === "sep") ? 1 : 0;
+                            mounthCount.oct += (result[i][nonNumberAttributes[j]] == "oct" && result[i][nonNumberAttributes[j]] === "oct") ? 1 : 0;
+                            mounthCount.nov += (result[i][nonNumberAttributes[j]] == "nov" && result[i][nonNumberAttributes[j]] === "nov") ? 1 : 0;
+                            mounthCount.dec += (result[i][nonNumberAttributes[j]] == "dec" && result[i][nonNumberAttributes[j]] === "dec") ? 1 : 0;
+                        } else if (nonNumberAttributes[j] == "day_of_week" && nonNumberAttributes[j] === "day_of_week") {
+                            dayOfWeekCount.mon += (result[i][nonNumberAttributes[j]] == "mon" && result[i][nonNumberAttributes[j]] === "mon") ? 1 : 0;
+                            dayOfWeekCount.tue += (result[i][nonNumberAttributes[j]] == "tue" && result[i][nonNumberAttributes[j]] === "tue") ? 1 : 0;
+                            dayOfWeekCount.wed += (result[i][nonNumberAttributes[j]] == "wed" && result[i][nonNumberAttributes[j]] === "wed") ? 1 : 0;
+                            dayOfWeekCount.thu += (result[i][nonNumberAttributes[j]] == "thu" && result[i][nonNumberAttributes[j]] === "thu") ? 1 : 0;
+                            dayOfWeekCount.fri += (result[i][nonNumberAttributes[j]] == "fri" && result[i][nonNumberAttributes[j]] === "fri") ? 1 : 0;
+                            dayOfWeekCount.sat += (result[i][nonNumberAttributes[j]] == "sat" && result[i][nonNumberAttributes[j]] === "sat") ? 1 : 0;
+                            dayOfWeekCount.sun += (result[i][nonNumberAttributes[j]] == "sun" && result[i][nonNumberAttributes[j]] === "sun") ? 1 : 0;
+                        } else if (nonNumberAttributes[j] == "poutcome" && nonNumberAttributes[j] === "poutcome") {
+                            poutcomeCount.failure += (result[i][nonNumberAttributes[j]] == "failure" && result[i][nonNumberAttributes[j]] === "failure") ? 1 : 0;
+                            poutcomeCount.nonexistent += (result[i][nonNumberAttributes[j]] == "nonexistent" && result[i][nonNumberAttributes[j]] === "nonexistent") ? 1 : 0;
+                            poutcomeCount.success += (result[i][nonNumberAttributes[j]] == "success" && result[i][nonNumberAttributes[j]] === "success") ? 1 : 0;
+                        } else if (nonNumberAttributes[j].trim() == "y" && nonNumberAttributes[j].trim() === "y") {
+                            yCount.yes += (result[i][nonNumberAttributes[j]].trim() == "yes" && result[i][nonNumberAttributes[j]].trim() === "yes") ? 1 : 0;
+                            yCount.no += (result[i][nonNumberAttributes[j]].trim() == "no" && result[i][nonNumberAttributes[j]].trim() === "no") ? 1 : 0;
                         }
                     }
                 }
+
+                // result.length is our line number so we will use this number for calculating frequency
+
+                for(var key in jobCount){ // Job Frequency Calculation
+                  var obj = {}
+                  obj[key] = (jobCount[key] / result.length) * 100
+                  jobsFrequency.push(obj);
+                }
+
+                for(var key in maritalCount){ // Marital Frequency Calculation
+                  var obj = {}
+                  obj[key] = (maritalCount[key] / result.length) * 100
+                  maritalFrequency.push(obj);
+                }
+
+                for(var key in educationCount){ // Education Frequency Calculation
+                  var obj = {}
+                  obj[key] = (educationCount[key] / result.length) * 100
+                  educationFrequency.push(obj);
+                }
+
+                for(var key in defaultCount){ // Default Frequency Calculation
+                  var obj = {}
+                  obj[key] = (defaultCount[key] / result.length) * 100
+                  defaultFrequency.push(obj);
+                }
+
+                for(var key in housingCount){ // Housing Frequency Calculation
+                  var obj = {}
+                  obj[key] = (housingCount[key] / result.length) * 100
+                  housingFrequency.push(obj);
+                }
+
+                for(var key in loanCount){ // Loan Frequency Calculation
+                  var obj = {}
+                  obj[key] = (loanCount[key] / result.length) * 100
+                  loanFrequency.push(obj);
+                }
+
+                for(var key in contactCount){ // Contact Frequency Calculation
+                  var obj = {}
+                  obj[key] = (contactCount[key] / result.length) * 100
+                  contactFrequency.push(obj);
+                }
+
+                for(var key in mounthCount){ // Mounh Frequency Calculation
+                  var obj = {}
+                  obj[key] = (mounthCount[key] / result.length) * 100
+                  mounthFrequency.push(obj);
+                }
+
+                for(var key in dayOfWeekCount){ // Day Of Week Frequency Calculation
+                  var obj = {}
+                  obj[key] = (dayOfWeekCount[key] / result.length) * 100
+                  dayOfWeekFrequency.push(obj);
+                }
+
+                for(var key in poutcomeCount){ // PoutCome Frequency Calculation
+                  var obj = {}
+                  obj[key] = (poutcomeCount[key] / result.length) * 100
+                  poutFrequency.push(obj);
+                }
+
+                for(var key in yCount){ // Y Frequency Calculation
+                  var obj = {}
+                  obj[key] = (yCount[key] / result.length) * 100
+                  yFrequency.push(obj);
+                }
+
+                console.log(jobsFrequency);
+                console.log(maritalFrequency);
+                console.log(educationFrequency);
+                console.log(defaultFrequency);
+                console.log(housingFrequency);
+                console.log(loanFrequency);
+                console.log(contactFrequency);
+                console.log(mounthFrequency);
+                console.log(dayOfWeekFrequency);
+                console.log(poutFrequency);
+                console.log(yFrequency);
 
             }
 
             reader.readAsText(file);
         }
     } else {
-        alert("Please change your browser, it is not compatible with File Reader.")
+        alert("Please change your browser, it is not compatible with File API.")
     }
 
 }
